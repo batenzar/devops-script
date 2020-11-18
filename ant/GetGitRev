@@ -1,0 +1,14 @@
+<project name="GetGitRev" basedir="." default="get-rev">	
+	<taskdef resource="net/sf/antcontrib/antlib.xml" />
+	
+	<property name="dir" value="C:\git_project" />	
+	
+	<!-- https://stackoverflow.com/questions/2974106/how-to-lookup-the-latest-git-commit-hash-from-an-ant-build-script -->
+	<target name="get-rev" description="Get git revision and then store into ${repository.version}">
+		<exec executable="git" outputproperty="git.revision" dir="${dir}" failifexecutionfails="false">
+			<arg value="rev-parse"/>
+			<arg value="HEAD"/>
+		</exec>
+		<echo>Git Rev: ${git.revision}</echo>
+	</target>
+</project>
